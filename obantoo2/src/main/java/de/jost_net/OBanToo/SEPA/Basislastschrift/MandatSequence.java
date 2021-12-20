@@ -4,7 +4,7 @@
  */
 package de.jost_net.OBanToo.SEPA.Basislastschrift;
 
-import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_002_02.SequenceType1Code;
+import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_001_02.SequenceType1Code;
 
 public enum MandatSequence
 {

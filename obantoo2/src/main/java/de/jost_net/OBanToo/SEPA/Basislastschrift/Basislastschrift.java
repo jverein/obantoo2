@@ -15,48 +15,48 @@ import java.util.List;
 import java.util.Map.Entry;
 
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
+import javax.xml.namespace.QName;
 
 import de.jost_net.OBanToo.SEPA.IBAN;
 import de.jost_net.OBanToo.SEPA.SEPAException;
-import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_002_02.AccountIdentificationSEPA;
-import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_002_02.ActiveOrHistoricCurrencyAndAmountSEPA;
-import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_002_02.ActiveOrHistoricCurrencyCodeEUR;
-import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_002_02.BranchAndFinancialInstitutionIdentificationSEPA1;
-import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_002_02.CashAccountSEPA1;
-import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_002_02.CashAccountSEPA2;
-import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_002_02.ChargeBearerTypeSEPACode;
-import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_002_02.CustomerDirectDebitInitiationV02;
-import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_002_02.DirectDebitTransactionInformationSDD;
-import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_002_02.DirectDebitTransactionSDD;
-import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_002_02.Document;
-import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_002_02.FinancialInstitutionIdentificationSEPA1;
-import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_002_02.GroupHeaderSDD;
-import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_002_02.IdentificationSchemeNameSEPA;
-import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_002_02.LocalInstrumentSEPA;
-import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_002_02.LocalInstrumentSEPACode;
-import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_002_02.MandateRelatedInformationSDD;
-import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_002_02.PartyIdentificationSEPA1;
-import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_002_02.PartyIdentificationSEPA2;
-import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_002_02.PartyIdentificationSEPA3;
-import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_002_02.PartyIdentificationSEPA5;
-import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_002_02.PartySEPA2;
-import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_002_02.PaymentIdentificationSEPA;
-import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_002_02.PaymentInstructionInformationSDD;
-import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_002_02.PaymentMethod2Code;
-import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_002_02.PaymentTypeInformationSDD;
-import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_002_02.PersonIdentificationSEPA2;
-import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_002_02.RemittanceInformationSEPA1Choice;
-import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_002_02.RestrictedPersonIdentificationSEPA;
-import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_002_02.RestrictedPersonIdentificationSchemeNameSEPA;
-import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_002_02.SequenceType1Code;
-import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_002_02.ServiceLevelSEPA;
-import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_002_02.ServiceLevelSEPACode;
+import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_001_02.AccountIdentificationSEPA;
+import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_001_02.ActiveOrHistoricCurrencyAndAmountSEPA;
+import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_001_02.ActiveOrHistoricCurrencyCodeEUR;
+import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_001_02.BranchAndFinancialInstitutionIdentificationSEPA3;
+import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_001_02.CashAccountSEPA1;
+import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_001_02.CashAccountSEPA2;
+import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_001_02.ChargeBearerTypeSEPACode;
+import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_001_02.CustomerDirectDebitInitiationV02;
+import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_001_02.DirectDebitTransactionInformationSDD;
+import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_001_02.DirectDebitTransactionSDD;
+import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_001_02.Document;
+import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_001_02.FinancialInstitutionIdentificationSEPA3;
+import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_001_02.GroupHeaderSDD;
+import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_001_02.IdentificationSchemeNameSEPA;
+import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_001_02.LocalInstrumentSEPA;
+import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_001_02.MandateRelatedInformationSDD;
+import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_001_02.PartyIdentificationSEPA1;
+import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_001_02.PartyIdentificationSEPA2;
+import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_001_02.PartyIdentificationSEPA3;
+import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_001_02.PartyIdentificationSEPA5;
+import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_001_02.PartySEPA2;
+import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_001_02.PaymentIdentificationSEPA;
+import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_001_02.PaymentInstructionInformationSDD;
+import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_001_02.PaymentMethod2Code;
+import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_001_02.PaymentTypeInformationSDD;
+import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_001_02.PersonIdentificationSEPA2;
+import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_001_02.RemittanceInformationSEPA1Choice;
+import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_001_02.RestrictedPersonIdentificationSEPA;
+import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_001_02.RestrictedPersonIdentificationSchemeNameSEPA;
+import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_001_02.SequenceType1Code;
+import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_001_02.ServiceLevel;
 import de.jost_net.OBanToo.StringLatin.Zeichen;
 
 /**
@@ -116,12 +116,13 @@ import de.jost_net.OBanToo.StringLatin.Zeichen;
    bl.read(new File("test.xml"));
    // jetzt können über die get-Methoden alle Werte abgefragt werden
  * </code>
- * 
+ *
  * @author heiner
- * 
+ *
  */
 public class Basislastschrift
 {
+  private static final String SEPA_NAMESPACE = "urn:iso:std:iso:20022:tech:xsd:pain.008.001.02";
 
   /**
    * Message-ID für die Prüfung auf Doppeleinreichung
@@ -224,28 +225,12 @@ public class Basislastschrift
     Document doc = new Document();
     doc.setCstmrDrctDbtInitn(getCustumerDirectDebitInitiationV02());
 
-    /*
-     * Die standardmässig von xjc erzeugte Document-Klasse erzeugt beim
-     * marshall-Aufruf immer einen "ns2"-Zusatz. Durch hinzufügen eines
-     * 
-     * @XmlRootElementes in die Klasse document wird das vermieden.
-     * 
-     * @XmlRootElement(name="Document")
-     * 
-     * @XmlAccessorType(XmlAccessType.FIELD)
-     * 
-     * @XmlType(name = "Document", propOrder = {"cstmrDrctDbtInitn"
-     * 
-     * public class Document
-     */
-
     JAXBContext context = JAXBContext.newInstance(Document.class);
     Marshaller m = context.createMarshaller();
-    m.setProperty(Marshaller.JAXB_SCHEMA_LOCATION,
-        "urn:iso:std:iso:20022:tech:xsd:pain.008.002.02 pain.008.002.02.xsd");
-    m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-    // m.marshal(doc, System.out);
-    m.marshal(doc, file);
+    m.setProperty( Marshaller.JAXB_SCHEMA_LOCATION, SEPA_NAMESPACE + " pain.008.001.02.xsd" );
+    m.setProperty( Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE );
+    // wrapping Document suppresses namespace prefix
+    m.marshal( new JAXBElement<Document>( new QName( SEPA_NAMESPACE, "Document" ), Document.class, doc ), file );
   }
 
   /**
@@ -366,8 +351,8 @@ public class Basislastschrift
     ca1.setId(ai);
     pii.setCdtrAcct(ca1);
 
-    BranchAndFinancialInstitutionIdentificationSEPA1 bafii = new BranchAndFinancialInstitutionIdentificationSEPA1();
-    FinancialInstitutionIdentificationSEPA1 fii = new FinancialInstitutionIdentificationSEPA1();
+    BranchAndFinancialInstitutionIdentificationSEPA3 bafii = new BranchAndFinancialInstitutionIdentificationSEPA3();
+    FinancialInstitutionIdentificationSEPA3 fii = new FinancialInstitutionIdentificationSEPA3();
     fii.setBIC(getBIC());
     bafii.setFinInstnId(fii);
     pii.setCdtrAgt(bafii);
@@ -479,8 +464,8 @@ public class Basislastschrift
     ddt.setMndtRltdInf(mri);
     ddti.setDrctDbtTx(ddt);
 
-    BranchAndFinancialInstitutionIdentificationSEPA1 bafiis = new BranchAndFinancialInstitutionIdentificationSEPA1();
-    FinancialInstitutionIdentificationSEPA1 fii = new FinancialInstitutionIdentificationSEPA1();
+    BranchAndFinancialInstitutionIdentificationSEPA3 bafiis = new BranchAndFinancialInstitutionIdentificationSEPA3();
+    FinancialInstitutionIdentificationSEPA3 fii = new FinancialInstitutionIdentificationSEPA3();
     fii.setBIC(z.getBic());
     bafiis.setFinInstnId(fii);
 
@@ -506,11 +491,11 @@ public class Basislastschrift
       SequenceType1Code sequence)
   {
     PaymentTypeInformationSDD pti = new PaymentTypeInformationSDD();
-    ServiceLevelSEPA sls = new ServiceLevelSEPA();
-    sls.setCd(ServiceLevelSEPACode.SEPA);
+    ServiceLevel sls = new ServiceLevel();
+    sls.setCd("SEPA");
     pti.setSvcLvl(sls);
     LocalInstrumentSEPA lis = new LocalInstrumentSEPA();
-    lis.setCd(LocalInstrumentSEPACode.CORE);
+    lis.setCd("CORE");
     pti.setLclInstrm(lis);
     pti.setSeqTp(sequence);
     return pti;
@@ -561,7 +546,7 @@ public class Basislastschrift
 
   /**
    * IBAN. Länge in Abhängigkeit vom Land.
-   * 
+   *
    */
   public void setIBAN(String iban) throws SEPAException
   {
@@ -580,7 +565,7 @@ public class Basislastschrift
 
   /**
    * Name des Zahlungspflichtigen. Länge max. 70 Stellen.
-   * 
+   *
    */
   public void setName(String name) throws SEPAException
   {
@@ -625,7 +610,7 @@ public class Basislastschrift
 
   /**
    * Komprimiert. Muss gesetzt werden, bevor der erste Zahler übergeben wird.
-   * 
+   *
    * @param komprimiert
    *          true: Zahlungen mit gleicher Mandanten-ID werden zusammengefasst,
    *          false: keine Zusammenfassung.
@@ -651,7 +636,7 @@ public class Basislastschrift
   /**
    * Kontrollsumme aller Buchungen. Steht nach dem Einlesen einer Datei zur
    * Verfügung.
-   * 
+   *
    * @return Kontrollsumme
    */
   public BigDecimal getKontrollsumme()
@@ -661,7 +646,7 @@ public class Basislastschrift
 
   /**
    * Anzahl der Buchungen. Steht nach dem Einlesen einer Datei zur Verfügung.
-   * 
+   *
    * @return Anzahl Buchungen
    */
   public String getAnzahlBuchungen()
@@ -677,7 +662,7 @@ public class Basislastschrift
   /**
    * Datum der Erzeugung der Datei. Steht nach dem Einlesen einer Datei zur
    * Verfügung.
-   * 
+   *
    * @return Erzeugungsdatum
    */
   public Date getCreationDateTime()
