@@ -11,7 +11,7 @@ import java.util.Date;
 import de.jost_net.OBanToo.SEPA.BIC;
 import de.jost_net.OBanToo.SEPA.IBAN;
 import de.jost_net.OBanToo.SEPA.SEPAException;
-import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_002_02.SequenceType1Code;
+import de.jost_net.OBanToo.SEPA.Nachricht.pain_008_001_02.SequenceType1Code;
 import de.jost_net.OBanToo.StringLatin.Zeichen;
 
 public class Zahler
