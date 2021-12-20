@@ -116,12 +116,13 @@ import de.jost_net.OBanToo.StringLatin.Zeichen;
    bl.read(new File("test.xml"));
    // jetzt können über die get-Methoden alle Werte abgefragt werden
  * </code>
- * 
+ *
  * @author heiner
- * 
+ *
  */
 public class Basislastschrift
 {
+  private static final String SEPA_NAMESPACE = "urn:iso:std:iso:20022:tech:xsd:pain.008.001.02";
 
   /**
    * Message-ID für die Prüfung auf Doppeleinreichung
@@ -224,28 +225,12 @@ public class Basislastschrift
     Document doc = new Document();
     doc.setCstmrDrctDbtInitn(getCustumerDirectDebitInitiationV02());
 
-    /*
-     * Die standardmässig von xjc erzeugte Document-Klasse erzeugt beim
-     * marshall-Aufruf immer einen "ns2"-Zusatz. Durch hinzufügen eines
-     * 
-     * @XmlRootElementes in die Klasse document wird das vermieden.
-     * 
-     * @XmlRootElement(name="Document")
-     * 
-     * @XmlAccessorType(XmlAccessType.FIELD)
-     * 
-     * @XmlType(name = "Document", propOrder = {"cstmrDrctDbtInitn"
-     * 
-     * public class Document
-     */
-
     JAXBContext context = JAXBContext.newInstance(Document.class);
     Marshaller m = context.createMarshaller();
-    m.setProperty(Marshaller.JAXB_SCHEMA_LOCATION,
-        "urn:iso:std:iso:20022:tech:xsd:pain.008.002.02 pain.008.002.02.xsd");
-    m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-    // m.marshal(doc, System.out);
-    m.marshal(doc, file);
+    m.setProperty( Marshaller.JAXB_SCHEMA_LOCATION, SEPA_NAMESPACE + " pain.008.001.02.xsd" );
+    m.setProperty( Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE );
+    // wrapping Document suppresses namespace prefix
+    m.marshal( new JAXBElement<Document>( new QName( SEPA_NAMESPACE, "Document" ), Document.class, doc ), file );
   }
 
   /**
@@ -561,7 +546,7 @@ public class Basislastschrift
 
   /**
    * IBAN. Länge in Abhängigkeit vom Land.
-   * 
+   *
    */
   public void setIBAN(String iban) throws SEPAException
   {
@@ -580,7 +565,7 @@ public class Basislastschrift
 
   /**
    * Name des Zahlungspflichtigen. Länge max. 70 Stellen.
-   * 
+   *
    */
   public void setName(String name) throws SEPAException
   {
@@ -625,7 +610,7 @@ public class Basislastschrift
 
   /**
    * Komprimiert. Muss gesetzt werden, bevor der erste Zahler übergeben wird.
-   * 
+   *
    * @param komprimiert
    *          true: Zahlungen mit gleicher Mandanten-ID werden zusammengefasst,
    *          false: keine Zusammenfassung.
@@ -651,7 +636,7 @@ public class Basislastschrift
   /**
    * Kontrollsumme aller Buchungen. Steht nach dem Einlesen einer Datei zur
    * Verfügung.
-   * 
+   *
    * @return Kontrollsumme
    */
   public BigDecimal getKontrollsumme()
@@ -661,7 +646,7 @@ public class Basislastschrift
 
   /**
    * Anzahl der Buchungen. Steht nach dem Einlesen einer Datei zur Verfügung.
-   * 
+   *
    * @return Anzahl Buchungen
    */
   public String getAnzahlBuchungen()
@@ -677,7 +662,7 @@ public class Basislastschrift
   /**
    * Datum der Erzeugung der Datei. Steht nach dem Einlesen einer Datei zur
    * Verfügung.
-   * 
+   *
    * @return Erzeugungsdatum
    */
   public Date getCreationDateTime()
