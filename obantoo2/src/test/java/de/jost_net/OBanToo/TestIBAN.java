@@ -114,21 +114,6 @@ public class TestIBAN
   }
 
   @Test
-  public void regel000300()
-  {
-    try
-    {
-      IBAN iban = new IBAN("6161604670", "51010800", "DE");
-      assertEquals(IBANCode.IBANBERECHNUNGNICHTMOEGLICH, iban.getCode());
-    }
-    catch (SEPAException e)
-    {
-      System.out.println(e.getFehler());
-      fail();
-    }
-  }
-
-  @Test
   public void regel000400()
   {
     try
@@ -414,25 +399,6 @@ public class TestIBAN
   }
 
   @Test
-  public void regel000900()
-  {
-    try
-    {
-      IBAN iban = new IBAN("1116232594", "68351976", "DE");
-      assertEquals("DE03683515573047232594", iban.getIBAN());
-      assertEquals("SOLADES1SFH", iban.getBIC());
-      iban = new IBAN("0016005845", "68351976", "DE");
-      assertEquals("DE10683515570016005845", iban.getIBAN());
-      assertEquals("SOLADES1SFH", iban.getBIC());
-    }
-    catch (SEPAException e)
-    {
-      System.out.println(e.getFehler());
-      fail();
-    }
-  }
-
-  @Test
   public void regel001000()
   {
     try
@@ -490,22 +456,6 @@ public class TestIBAN
       IBAN iban = new IBAN("60624", "40050000", "DE");
       assertEquals("DE15300500000000060624", iban.getIBAN());
       assertEquals("WELADEDDXXX", iban.getBIC());
-    }
-    catch (SEPAException e)
-    {
-      System.out.println(e.getFehler());
-      fail();
-    }
-  }
-
-  @Test
-  public void regel001900()
-  {
-    try
-    {
-      IBAN iban = new IBAN("20475000", "50130100", "DE");
-      assertEquals("DE82501203830020475000", iban.getIBAN());
-      assertEquals("DELBDE33XXX", iban.getBIC());
     }
     catch (SEPAException e)
     {
@@ -860,87 +810,12 @@ public class TestIBAN
   }
 
   @Test
-  public void regel002101_01()
+  public void regel002101()
   {
     try
     {
-      IBAN iban = new IBAN("305200", "35020030", "DE");
+      IBAN iban = new IBAN("305200", "36020030", "DE");
       assertEquals("DE81360200300000305200", iban.getIBAN());
-    }
-    catch (SEPAException e)
-    {
-      e.printStackTrace();
-      fail();
-    }
-  }
-
-  @Test
-  public void regel002101_02()
-  {
-    try
-    {
-      IBAN iban = new IBAN("900826", "36220030", "DE");
-      assertEquals("DE03360200300000900826", iban.getIBAN());
-    }
-    catch (SEPAException e)
-    {
-      e.printStackTrace();
-      fail();
-    }
-  }
-
-  @Test
-  public void regel002101_03()
-  {
-    try
-    {
-      IBAN iban = new IBAN("705020", "36520030", "DE");
-      assertEquals("DE71360200300000705020", iban.getIBAN());
-    }
-    catch (SEPAException e)
-    {
-      e.printStackTrace();
-      fail();
-    }
-  }
-
-  @Test
-  public void regel002101_04()
-  {
-    try
-    {
-      IBAN iban = new IBAN("9197354", "36020030", "DE");
-      assertEquals("DE18360200300009197354", iban.getIBAN());
-    }
-    catch (SEPAException e)
-    {
-      e.printStackTrace();
-      fail();
-    }
-  }
-
-  @Test
-  public void regel002500_01()
-  {
-    try
-    {
-      IBAN iban = new IBAN("2777939", "64150182", "DE");
-      assertEquals("DE81600501010002777939", iban.getIBAN());
-    }
-    catch (SEPAException e)
-    {
-      e.printStackTrace();
-      fail();
-    }
-  }
-
-  @Test
-  public void regel002500_02()
-  {
-    try
-    {
-      IBAN iban = new IBAN("7893500686", "64450288", "DE");
-      assertEquals("DE80600501017893500686", iban.getIBAN());
     }
     catch (SEPAException e)
     {
@@ -1690,36 +1565,6 @@ public class TestIBAN
   }
 
   @Test
-  public void regel004300_01()
-  {
-    try
-    {
-      IBAN iban = new IBAN("868", "60651070", "DE");
-      assertEquals("DE49666500850000000868", iban.getIBAN());
-    }
-    catch (SEPAException e)
-    {
-      e.printStackTrace();
-      fail();
-    }
-  }
-
-  @Test
-  public void regel004300_02()
-  {
-    try
-    {
-      IBAN iban = new IBAN("12602", "60651070", "DE");
-      assertEquals("DE33666500850000012602", iban.getIBAN());
-    }
-    catch (SEPAException e)
-    {
-      e.printStackTrace();
-      fail();
-    }
-  }
-
-  @Test
   public void regel004400_01()
   {
     try
@@ -1757,21 +1602,6 @@ public class TestIBAN
     {
       IBAN iban = new IBAN("1231234567", "10120800", "DE");
       assertEquals("DE12360102001231234567", iban.getIBAN());
-    }
-    catch (SEPAException e)
-    {
-      e.printStackTrace();
-      fail();
-    }
-  }
-
-  @Test
-  public void regel004900_01()
-  {
-    try
-    {
-      IBAN iban = new IBAN("0001991182", "30060010", "DE");
-      assertEquals("DE26300600109911820001", iban.getIBAN());
     }
     catch (SEPAException e)
     {
